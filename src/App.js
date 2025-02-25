@@ -1,23 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React, { useState } from 'react';
+import Dashboard from './components/Dashboard';
+import VulnerabilitiesTable from './components/VulnerabilitiesTable';
+import FilterBar from './components/FilterBar';
 
 function App() {
+  const [filter, setFilter] = useState({ product: '' });
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Dashboard />
+      <FilterBar filter={filter} setFilter={setFilter} />
+      <VulnerabilitiesTable filter={filter} />
     </div>
   );
 }

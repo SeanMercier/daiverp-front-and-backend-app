@@ -1,0 +1,171 @@
+/* Overall page background and font color */
+body {
+  background-color: #C5D5D5; /* Poster background color */
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #222; /* Dark text for readability on light background */
+}
+
+/* Header */
+.dashboard-header {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  background-color: #e1e7e7; /* Use the accent color for the header bar */
+}
+
+.dashboard-header h1 {
+  font-size: 2rem;
+  color: #2db4cf; /* Poster title/header color */
+  margin: 0;
+  margin-right: 20px;
+}
+
+.logo {
+  height: 60px;
+  margin-left: auto;
+}
+
+/* Upload Section */
+.upload-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.upload-status {
+  text-align: center;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* Filter container for the search bar and product dropdown */
+.filter-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 10px;
+}
+
+.search-bar {
+  padding: 8px;
+  border: 1px solid #888;
+  border-radius: 4px;
+  background-color: #fff; /* White input background for clarity */
+  color: #333;
+}
+
+.filter-dropdown {
+  padding: 8px;
+  border: 1px solid #888;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #333;
+}
+
+/* Main container for the table */
+.table-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+.table-scroll-container {
+  max-height: 400px;
+  overflow-y: auto;
+  overflow-x: auto;
+  border: 1px solid #333;
+}
+
+/* Table styling */
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fdfdfd; /* Slightly off-white for table background */
+}
+
+.styled-table th,
+.styled-table td {
+  padding: 10px;
+  border: 1px solid #aaa; /* Subtle borders around cells */
+}
+
+.styled-table thead {
+  background-color: #e1e7e7; /* A lighter gray row for table headers */
+}
+
+/* Table header text uses the poster color */
+.styled-table th {
+  cursor: pointer;
+  color: #2db4cf; /* Poster header color for the text in table headings */
+  user-select: none;
+  text-transform: uppercase;
+}
+
+.styled-table td {
+  color: #222; /* Normal text color inside table cells */
+}
+
+/* Provide a little spacing for arrow icons */
+.styled-table th::after {
+  margin-left: 5px;
+}
+
+/* Sidebar styling (the two big buttons) */
+.sidebar {
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.sidebar-button {
+  background-color: #3b96a8; /* Poster accent color */
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.sidebar-button:hover {
+  background-color: #2db4cf; /* Title/header color on hover */
+}
+
+/* Download container and button */
+.download-container {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.download-button {
+  text-decoration: none;
+  background-color: #3b96a8; /* Use accent color */
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.download-button:hover {
+  background-color: #2db4cf; /* Use the title/header color on hover */
+}
+
+/* Footer */
+footer {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #333;
+  padding: 10px 0;
+  background-color: #e1e7e7; /* Light gray band for the footer */
+}
+

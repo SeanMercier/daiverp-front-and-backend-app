@@ -1,77 +1,4 @@
 cd
-rm predictions.csv
-tail -f /home/ec2-user/server.log
-cd uploads/
-ls
-curl -X POST -F "file=@/home/ec2-user/uploads/system_log.csv" http://localhost:8080/upload
-tail -f /var/log/syslog | grep flask
-cd
-sudo journalctl -u flask-app --no-pager --lines=50
-sudo journalctl -u flask-app -f
-curl -X POST -F "file=@/home/ec2-user/uploads/system_log.csv" http://localhost:8080/upload
-python3 /home/ec2-user/model/predict.py /home/ec2-user/uploads/system_log.csv /home/ec2-user/model/cve_log.csv
-cd model
-ls
-cd
-ls
-cd predictions/
-ls
-cd
-cd model
-nano predict.py
-clear
-rm predict.py 
-nano predict.py
-curl -X POST -F "file=@/home/ec2-user/uploads/system_log.csv" http://localhost:8080/upload
-sudo systemctl status flask-app
-sudo systemctl stop flask-app
-python3 /home/ec2-user/server.py
-nano server.py
-sudo systemctl restart flask-app
-cat /home/ec2-user/predictions/predictions.csv | head -n 10
-python3 /home/ec2-user/model/predict.py /home/ec2-user/uploads/system_log.csv /home/ec2-user/model/cve_log.csv
-cd predictions/
-ls
-nano predictions.csv 
-nano server.py
-cd daiverp-project/
-cd frontend/
-cd src
-cd components/
-nano CSVUploader.js
-cat /home/ec2-user/predictions/predictions.csv
-journalctl -u flask-app --no-pager --lines=50
-cd daiverp-project/
-cd frontend/
-cd src
-cd components/
-nano Dashboard.js
-clear
-rm Dashboard.js
-nano Dashboard.js
-npm run build
-npm start
-rm Dashboard.js
-nano Dashboard.js
-npm run build
-nano CSVUploader.js
-rm CSVUploader.js
-nano CSVUploader.js
-npm run build
-rm CSVUploader.js
-nano CSVUploader.js
-npm run build
-nano CSVUploader.js
-rm CSVUploader.js
-nano CSVUploader.js
-npm run build
-nano Dashboard.js
-npm run build
-cd
-cd predictions/
-cat predictions.csv 
-clear
-cd
 cd daiverp-project/
 cd frontend/
 cd src
@@ -997,4 +924,77 @@ rm index.js
 nano index.js
 cd 
 cd daiverp-project/frontend/src/components/
+npm run build
+cd daiverp-project/frontend/src/components/
+nano cd
+cd
+cd daiverp-project/frontend/
+nano .env
+cd src/components/
+nano Dashboard.js
+npm run build
+cd
+git status
+git add -A
+git commit -m "feat: Add secure admin login and dashboard routing"
+git push origin main
+lq
+ls
+cd daiverp-project/frontend/src/components/
+nano AdminPanel.js 
+rm AdminPanel.js 
+nano AdminPanel.js 
+nano AdminPanel.css
+npm run build
+rm AdminPanel.css
+nano AdminPanel.css
+rm AdminPanel.js
+nano AdminPanel.js 
+npm run build
+rm AdminPanel.js
+rm AdminPanel.css
+nano AdminPanel.js 
+nano AdminPanel.css
+npm run build
+nano AdminPanel.js
+nano AdminPanel.css
+npm run build
+nano AdminPanel.js
+npm run build
+ls
+cd
+ls
+cd daiverp-project/
+ls
+cd frontend/
+ls
+cd
+nano server.py
+rm server.py
+nano server.py
+cd daiverp-project/frontend/src/c
+cd daiverp-project/frontend/src/components/
+nano AdminPanel.js
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+cd
+nano server.py
+cd daiverp-project/frontend/src/components/
+cd
+cd daiverp-project/frontend/src
+ls
+nano App.js
+cd components/
+npm run build
+nano server.py
+cd daiverp-project/frontend/src/components/
+nano AdminPanel.js
+cd
+rm server.py
+nano server.py
+cd daiverp-project/frontend/src/components/
+nano AdminPanel.js
+rm AdminPanel.js
+nano AdminPanel.js
 npm run build

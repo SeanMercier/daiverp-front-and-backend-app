@@ -6,8 +6,8 @@ from flask import Flask, request, jsonify, send_file
 from werkzeug.utils import secure_filename  # Protects against directory traversal attacks
 from flask_cors import CORS  # Enable Cross-Origin Resource Sharing
 import subprocess
-from datetime import datetime
-from collections import deque  # Efficient fixed-size history tracker
+from datetime import datetime, timedelta
+from collections import deque, Counter  # Efficient fixed-size history tracker
 
 # Add the model directory to Python's module search path
 # Reference: https://stackoverflow.com/questions/4383571/importing-files-from-different-folder
@@ -35,6 +35,10 @@ ALLOWED_EXTENSIONS = {"csv"}  # Only accept CSV uploads
 # Using deque ensures max 10 recent jobs are stored efficiently
 # Reference: https://docs.python.org/3/library/collections.html#collections.deque
 history = deque(maxlen=10)
+
+# === In-Memory Queues and Active User Tracking ===
+prediction_queue = []
+active_users = {}  # key = IP, value = last seen timestamp
 
 # === Utility: Validate allowed file extensions ===
 def allowed_file(filename):
@@ -64,8 +68,20 @@ def upload_file():
         selected_model = request.form.get("model", "V1")
         print(f"🔍 Selected model from user: {selected_model}")
 
+        # Simulate job queue
+        job_id = f"job_{datetime.utcnow().isoformat()}"
+        prediction_queue.append(job_id)
+
+        # Track active user IP
+        user_ip = request.remote_addr
+        active_users[user_ip] = datetime.utcnow()
+
         # Run processing
         output_filepath, output_filename = process_system_log(filepath, selected_model)
+
+        # Remove job from queue
+        if job_id in prediction_queue:
+            prediction_queue.remove(job_id)
 
         if output_filepath:
             output_df = pd.read_csv(output_filepath)
@@ -171,6 +187,56 @@ def get_products():
 @app.route("/api/history", methods=["GET"])
 def get_history():
     return jsonify(list(history)), 200
+
+# === Route: Admin metrics ===
+@app.route("/api/admin/metrics", methods=["GET"])
+def get_admin_metrics():
+    now = datetime.utcnow()
+    cutoff = now - timedelta(days=1)
+
+    # Filter predictions in last 24h
+    daily_predictions = sum(
+        1 for record in history
+        if "timestamp" in record and datetime.fromisoformat(record["timestamp"]) > cutoff
+    )
+
+    # Filter active users within last 15 minutes
+    active_cutoff = now - timedelta(minutes=15)
+    recent_users = [ip for ip, ts in active_users.items() if ts > active_cutoff]
+
+    model_deployed = os.getenv("MODEL_DEPLOYED", "2025-03-30")
+
+    return jsonify({
+        "activeUsers": len(recent_users),
+        "queueLength": len(prediction_queue),
+        "dailyPredictions": daily_predictions,
+        "modelDeployed": model_deployed
+    })
+
+# === Route: Weekly prediction chart data ===
+@app.route("/api/admin/weekly-predictions", methods=["GET"])
+def get_weekly_predictions():
+    # Count predictions by weekday (0=Mon ... 6=Sun)
+    counter = Counter()
+    for record in history:
+        if "timestamp" in record:
+            dt = datetime.fromisoformat(record["timestamp"])
+            counter[dt.weekday()] += 1
+
+    days_ordered = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+    data = [counter.get(i, 0) for i in range(7)]
+
+    return jsonify({
+        "labels": days_ordered,
+        "counts": data
+    })
+
+# === Route: Track active users who are visiting (not just uploading) ===
+@app.route("/api/ping", methods=["GET"])
+def track_active_user():
+    user_ip = request.remote_addr
+    active_users[user_ip] = datetime.utcnow()
+    return jsonify({"message": "pong", "timestamp": datetime.utcnow().isoformat()})
 
 # === HTTPS Launch (with self-signed certs during development) ===
 # Reference: https://flask.palletsprojects.com/en/2.2.x/cli/#development-server

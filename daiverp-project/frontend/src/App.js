@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import Dashboard from './components/Dashboard';
+import AdminPanel from './components/AdminPanel';
 import VulnerabilitiesTable from './components/VulnerabilitiesTable';
 import FilterBar from './components/FilterBar';
 import CSVUploader from './components/CSVUploader';
@@ -11,7 +13,10 @@ function App() {
 
   return (
     <div className="App">
-      <Dashboard />
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/admin" element={<AdminPanel />} />
+      </Routes>
     </div>
   );
 }

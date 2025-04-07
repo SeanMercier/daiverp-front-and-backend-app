@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
 import CSVUploader from "./CSVUploader"; // Custom uploader component
 import { Bar } from "react-chartjs-2"; // Charting library for rendering severity breakdown
 import { Chart as ChartJS } from "chart.js/auto"; // Registers all required chart.js components globally
-
 import "./Dashboard.css"; // Local styling
 
 function Dashboard() {
@@ -18,7 +18,20 @@ function Dashboard() {
   const [showSeverityChart, setShowSeverityChart] = useState(false);
 
   // Admin related states
-   
+  const [showLogin, setShowLogin] = useState(false);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const ADMIN_USER = process.env.REACT_APP_ADMIN_USERNAME;
+  const ADMIN_PASS = process.env.REACT_APP_ADMIN_PASSWORD;
+
+  const handleAdminLogin = () => {
+    if (username === ADMIN_USER && password === ADMIN_PASS) {
+      navigate("/admin");
+    } else {
+      alert("Invalid credentials");
+    }
+  };
 
   // === Fetch product list from backend on first load ===
   // Ref: https://reactjs.org/docs/hooks-effect.html
@@ -140,7 +153,6 @@ function Dashboard() {
 
   // === Inline component: Bar chart grouped by severity levels ===
   function SeverityBarChart({ predictions }) {
-    // Tally severity buckets
     const severityCounts = useMemo(() => {
       const counts = { Critical: 0, High: 0, Medium: 0, Low: 0, "Very Low": 0 };
       predictions.forEach((row) => {
@@ -152,7 +164,6 @@ function Dashboard() {
       return counts;
     }, [predictions]);
 
-    // Chart.js config
     const data = useMemo(() => ({
       labels: Object.keys(severityCounts),
       datasets: [
@@ -161,10 +172,10 @@ function Dashboard() {
           data: Object.values(severityCounts),
           backgroundColor: [
             "#f50707", // Critical
-            "#fc9014", // High
-            "#f2e307", // Medium
-            "#08a7fc", // Low
-            "#07f223", // Very Low
+	    "#fc9014", // High
+	    "#f2e307", // Medium
+	    "#08a7fc", // Low
+	    "#07f223"  // Very Low
           ],
         },
       ],
@@ -209,7 +220,6 @@ function Dashboard() {
     }
   };
 
-  // === Download previously processed files from /api/history ===
   const handleDownloadOldFile = async (filename) => {
     const httpsBackend = `https://${window.location.hostname}:8080`;
     const downloadLink = `${httpsBackend}/download/${filename}`;
@@ -236,7 +246,20 @@ function Dashboard() {
       <header className="dashboard-header">
         <h1>DAIVERP Dashboard</h1>
         <img src="/DAIVERPLogo.png" alt="DAIVERP Logo" className="logo" />
+        <button className="admin-login-button" onClick={() => setShowLogin(true)}>🔐 Admin Login</button>
       </header>
+
+      {showLogin && (
+        <div className="modal">
+          <div className="modal-content">
+            <h3>Admin Login</h3>
+            <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
+            <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+            <button onClick={handleAdminLogin}>Login</button>
+            <button onClick={() => setShowLogin(false)}>Cancel</button>
+          </div>
+        </div>
+      )}
 
       <div className="upload-section">
         <CSVUploader onUploadSuccess={handleUploadSuccess} />
@@ -245,23 +268,11 @@ function Dashboard() {
       {uploadStatus && <p className="upload-status">{uploadStatus}</p>}
 
       <div className="filter-container">
-        <input
-          type="text"
-          placeholder="🔍 Search by CVE ID or System ID..."
-          className="search-bar"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-        />
-        <select
-          className="filter-dropdown"
-          value={selectedProduct}
-          onChange={(e) => setSelectedProduct(e.target.value)}
-        >
+        <input type="text" placeholder="🔍 Search by CVE ID or System ID..." className="search-bar" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
+        <select className="filter-dropdown" value={selectedProduct} onChange={(e) => setSelectedProduct(e.target.value)}>
           <option value="">📌 Filter by product/software...</option>
           {[...new Set(predictions.map((p) => p.Product))].map((product, index) => (
-            <option key={index} value={product}>
-              {product}
-            </option>
+            <option key={index} value={product}>{product}</option>
           ))}
         </select>
       </div>
@@ -310,9 +321,7 @@ function Dashboard() {
 
       {downloadUrl && (
         <div className="download-container">
-          <button onClick={handleDownload} className="download-button">
-            ⬇️ Download Predictions CSV
-          </button>
+          <button onClick={handleDownload} className="download-button">⬇️ Download Predictions CSV</button>
         </div>
       )}
 

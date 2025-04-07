@@ -1,106 +1,3 @@
-nano server.py
-ps aux | grep server.py
-sudo systemctl status flask-app
-curl -X POST -F "file=@test.csv" http://<your-ec2-ip>:8080/upload
-curl -X POST -F "file=@test.csv" http://52.50.121.4:8080/upload
-cd uploads
-curl -X POST -F "file=@test.csv" http://52.50.121.4:8080/upload
-cd model
-l
-ls
-ps aux | grep server.py
-http://localhost:8080/
-cd model
-ls
-cd
-cd uploads
-ls
-sudo systemctl status flask-app
-cd
-curl -X POST -F "file=@/home/ec2-user/uploads/system_log.csv" http://localhost:8080/upload
-cd uploads
-nano system_log.csv 
-[ec2-user@ip-172-31-17-138 ~]$ curl -X POST -F "file=@/home/ec2-user/uploads/system_log.csv" http://localhost:8080/upload
-{   "error": "Processing failed"; }
-cd
-sudo tail -f /var/log/flask-app.log
-sudo journalctl -u flask-app --no-pager | tail -n 50
-tail -f server.log
-sudo journalctl -u flask-app --no-pager | tail -n 50
-python3
-nano server.py
-rm server.py
-nano server.py
-curl -X POST -F "file=@/home/ec2-user/uploads/system_log.csv" http://localhost:8080/upload
-cd model
-ls
-curl -X POST -F "file=@/home/ec2-user/model/system_architecture_sample.csv" http://localhost:8080/upload
-cd model
-ls
-tail -f /home/ec2-user/server.log
-nano system_architecture_sample.csv 
-python3 -c "
-import pandas as pd
-sys_log = pd.read_csv('/home/ec2-user/model/system_architecture_sample.csv')
-print('System Architecture Columns:', sys_log.columns.tolist())
-"
-python3 -c "
-import pandas as pd
-cve_log = pd.read_csv('/home/ec2-user/model/cve_log_sample.csv')
-print('CVE Log Columns:', cve_log.columns.tolist())
-"
-nano predict.py
-cd
-rm server.py
-nano server.py
-curl -X POST -F "file=@/home/ec2-user/model/system_architecture_sample.csv" http://localhost:8080/upload
-cd model
-nano cve_log_sample.csv 
-python3 -c "
-import pandas as pd
-sys_log = pd.read_csv('/home/ec2-user/model/system_architecture_sample.csv')
-cve_log = pd.read_csv('/home/ec2-user/model/cve_log_sample.csv')
-merged_df = sys_log.merge(cve_log, on='Product', how='inner')
-print(merged_df.head())
-"
-curl -X POST -F "file=@/home/ec2-user/model/system_architecture_sample.csv" http://localhost:8080/upload
-nano server.py
-python3 /home/ec2-user/model/predict.py /home/ec2-user/model/system_architecture_sample.csv /home/ec2-user/model/cve_log.csv
-cd model
-ls
-python3 /home/ec2-user/model/predict.py /home/ec2-user/model/system_architecture_sample.csv /home/ec2-user/model/cve_log.csv
-python3 /home/ec2-user/model/predict.py /home/ec2-user/model/system_architecture_log.csv /home/ec2-user/model/cve_log.csv
-nano predict.py
-python3 /home/ec2-user/model/predict.py /home/ec2-user/model/system_architecture_log.csv /home/ec2-user/model/cve_log.csv
-nano predict.py 
-python3 /home/ec2-user/model/predict.py /home/ec2-user/model/system_architecture_log.csv /home/ec2-user/model/cve_log.csv
-curl -X POST -F "file=@/home/ec2-user/model/system_architecture_log.csv" http://localhost:8080/upload
-cd
-nano server.py
-sudo nano /etc/nginx/nginx.conf
-rm server.py
-nano server.py
-cd model
-nano predict.py
-clear
-rm predict.py 
-nano predict.py
-nano server.py
-rm server.py
-ls
-cd
-nano server.py
-rm server.py
-nano server.py
-curl -X POST -F "file=@/home/ec2-user/model/system_architecture_sample.csv" http://localhost:8080/upload
-curl -O http://localhost:8080/download/predictions.csv
-ls
-nano predictions
-cd predictions/
-ls
-nano predictions.csv
-rm predictions.csv
-ls
 cd
 rm predictions.csv
 tail -f /home/ec2-user/server.log
@@ -998,3 +895,106 @@ nano AdminPanel.js
 nano Dashboard.js
 nano AdminPanel.js
 nano Dashboard.js
+cd daiverp-project/frontend/
+git add -A
+git commit -m "Added frontend source files."
+git push origin main
+cd
+cd daiverp-project/frontend/
+dir
+git pull origin main --rebase
+git push origin main
+git pull origin main --rebase
+git status
+git restore package-lock.json package.json src/App.css src/App.js src/components/Dashboard.css src/components/Dashboard.js src/components/FilterBar.js src/components/VulnerabilitiesTable.js src/index.css src/index.js
+git checkout --ours package-lock.json package.json src/App.css src/App.js src/components/Dashboard.css src/components/Dashboard.js src/components/FilterBar.js src/components/VulnerabilitiesTable.js src/index.css src/index.js
+git checkout --theirs package-lock.json package.json src/App.css src/App.js src/components/Dashboard.css src/components/Dashboard.js src/components/FilterBar.js src/components/VulnerabilitiesTable.js src/index.css src/index.js
+git add .
+git rebase --continue
+git push origin main
+cd
+rm -rf .git
+git init
+git remote add origin https://github.com/SeanMercier/daiverp-front-and-backend-app.git
+git branch -M main
+git add .
+cd ~/daiverp-project/frontend
+rm -rf .git
+cd
+git add .
+git commit -m "Clean commit with frontend as normal directory"
+git push -u origin main --force
+find . -name ".git"
+ls -a ~/daiverp-project/frontend
+rm -rf ~/daiverp-project/frontend/.git
+git add frontend/*
+git add daiverp-project/frontend/*
+git rm --cached daiverp-project/frontend
+git add daiverp-project/frontend
+git commit -m "Fix: remove frontend as submodule and add as normal folder"
+git push origin main --force
+cd daiverp-project/
+ls
+cd frontend/
+ls
+cd
+ls
+cd daiverp-project/
+ls
+cd frontend/
+ls
+rm -rf ~/daiverp-project/frontend/daiverp-project
+ls
+cd tools/
+ls
+cd
+ls
+cd tools/
+ls
+cd
+cd daiverp-project/frontend/
+rm -rf ~/daiverp-project/frontend/model ~/daiverp-project/frontend/tools ~/daiverp-project/frontend/server.py ~/daiverp-project/frontend/cert.pem
+ls
+rm -rf BUILD_FROM_SOURCE_PACKAGES_LICENCES        LINUX_PACKAGES_LICENSES        LINUX_PACKAGES_LIST        Nvidia_Cloud_EULA.pdf        OSSNvidiaDriver_v560.35.03_license.txt        PYTHON_PACKAGES_LICENSES        THIRD_PARTY_SOURCE_CODE_URLS        nvidia-acknowledgements
+ls
+cd
+git add .
+git commit -m "Removed unrelated license and driver files from frontend"
+git push origin main --force
+cd daiverp-project/
+ls
+cd
+ls
+cd daiverp-server/
+ls
+cd uploads
+ls
+cd
+exit
+cd daiverp-project/frontend/src/components/
+nano Dashboard.js
+rm Dashboard.js
+nano Dashboard.js
+npm run build
+cd
+cd daiverp-project/
+cd frontend/
+cd public/
+ls
+nano index.html
+cd
+cd daiverp-project/frontend/src/components/
+npm run build
+npm install react-router-dom
+npm run build
+cd daiverp-project/frontend/src/
+ls
+nano App.js
+rm App.js
+nano App.js
+nano index.js
+rm index.js
+nano index.js
+cd 
+cd daiverp-project/frontend/src/components/
+npm run build

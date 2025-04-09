@@ -216,20 +216,29 @@ def get_admin_metrics():
 # === Route: Weekly prediction chart data ===
 @app.route("/api/admin/weekly-predictions", methods=["GET"])
 def get_weekly_predictions():
-    # Count predictions by weekday (0=Mon ... 6=Sun)
-    counter = Counter()
+    # Count predictions per weekday by model type (V1 vs V2)
+    counter_v1 = Counter()
+    counter_v2 = Counter()
+
     for record in history:
-        if "timestamp" in record:
+        if "timestamp" in record and "model" in record:
             dt = datetime.fromisoformat(record["timestamp"])
-            counter[dt.weekday()] += 1
+            weekday = dt.weekday()
+            if record["model"] == "V2":
+                counter_v2[weekday] += 1
+            else:
+                counter_v1[weekday] += 1
 
     days_ordered = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
-    data = [counter.get(i, 0) for i in range(7)]
+    data_v1 = [counter_v1.get(i, 0) for i in range(7)]
+    data_v2 = [counter_v2.get(i, 0) for i in range(7)]
 
     return jsonify({
         "labels": days_ordered,
-        "counts": data
+        "v1": data_v1,
+        "v2": data_v2
     })
+
 
 # === Route: Track active users who are visiting (not just uploading) ===
 @app.route("/api/ping", methods=["GET"])

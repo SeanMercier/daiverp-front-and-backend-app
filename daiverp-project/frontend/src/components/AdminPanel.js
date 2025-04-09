@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Line } from "react-chartjs-2";
+import { Line, Bar } from "react-chartjs-2";
 import { Chart as ChartJS } from "chart.js/auto";
 import "./AdminPanel.css";
 import { useNavigate } from "react-router-dom";
@@ -32,32 +32,35 @@ function AdminPanel() {
       });
   }, []);
 
-  // Fetch weekly prediction data from backend
-  useEffect(() => {
-    fetch("/api/admin/weekly-predictions")
-      .then((res) => {
-        if (!res.ok) throw new Error("Failed to fetch weekly chart data");
-        return res.json();
-      })
-      .then((data) => {
-        setChartData({
-          labels: data.labels,
-          datasets: [
-            {
-              label: "Predictions Run Per Day",
-              data: data.counts,
-              borderColor: "#0d6efd",
-              backgroundColor: "rgba(13, 110, 253, 0.2)",
-              tension: 0.3,
-              fill: true,
-            },
-          ],
-        });
-      })
-      .catch((err) => {
-        console.error("Failed to fetch weekly predictions data:", err);
+// Fetch weekly prediction data from backend
+useEffect(() => {
+  fetch("/api/admin/weekly-predictions")
+    .then((res) => {
+      if (!res.ok) throw new Error("Failed to fetch weekly chart data");
+      return res.json();
+    })
+    .then((data) => {
+      setChartData({
+        labels: data.labels,
+        datasets: [
+          {
+            label: "V1 Predictions",
+            data: data.v1,
+            backgroundColor: "#0d6efd", // blue
+          },
+          {
+            label: "V2 Predictions",
+            data: data.v2,
+            backgroundColor: "#fd7e14", // orange
+          },
+        ],
       });
-  }, []);
+    })
+    .catch((err) => {
+      console.error("Failed to fetch weekly predictions data:", err);
+    });
+}, []);
+
 
   return (
     <div className="admin-panel">
@@ -92,7 +95,7 @@ function AdminPanel() {
       </div>
 
       <div style={{ marginTop: "3rem", maxWidth: "800px", marginInline: "auto" }}>
-        <Line
+        <Bar
           data={chartData}
           options={{
             responsive: true,

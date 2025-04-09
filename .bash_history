@@ -1,6 +1,3 @@
-cd
-cd daiverp-project/
-cd frontend/
 cd src
 cd components/
 rm Dashboard.js
@@ -998,3 +995,6 @@ nano AdminPanel.js
 rm AdminPanel.js
 nano AdminPanel.js
 npm run build
+git add -A
+git commit -m "Added dynamic admin metrics panel with live stats and weekly predictions chart."
+git push origin main

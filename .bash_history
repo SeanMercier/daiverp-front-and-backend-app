@@ -1,51 +1,3 @@
-cd src
-cd components/
-rm Dashboard.js
-nano Dashboard.js
-npm run build
-cd
-openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes
-ls
-nano server.py
-cd predictions/
-ls
-nano predictions.csv
-cd daiverp-project/
-cd frontend/
-cd src
-cd components/
-nano CSVUploader.js
-npm run build
-nano CSVUploader.js
-rm CSVUploader.js
-nano CSVUploader.js
-npm run build
-nano CSVUploader.js
-npm run build
-cd
-nano server.py
-pwd
-ls
-cd daiverp-project/
-cd frontend/$
-cd frontend
-cd src
-cd components/
-npm run build
-sudo nano /etc/nginx/nginx.conf
-sudo nginx -t   # Test config syntax
-sudo systemctl reload nginx
-npm run build
-sudo nano /etc/nginx/nginx.conf
-sudo nginx -t   # Test config syntax
-sudo systemctl reload nginx
-npm run build
-sudo lsof -i :8080
-curl -X POST -F "file=@/home/ec2-user/uploads/system_log.csv" http://localhost:8080/upload
-cd
-cd uploads/
-ls
-curl -X POST -F "file=@/home/ec2-user/uploads/system_log.csv" http://localhost:8080/upload
 cd
 python3 server.py
 curl -k -X POST -F "file=@/home/ec2-user/uploads/system_log.csv" https://localhost:8080/upload
@@ -998,3 +950,51 @@ npm run build
 git add -A
 git commit -m "Added dynamic admin metrics panel with live stats and weekly predictions chart."
 git push origin main
+ls
+nano server.py
+cd daiverp-project/frontend/src/components/
+nano AdminPanel.js
+npm run build
+nano AdminPanel.js
+npm run builf
+npm run build
+nano AdminPanel.js
+npm run build
+cd
+git add -A
+git commit -m "Added stacked bar chart in admin panel for weekly predictions by model (V1 vs V2)."
+git push origin main
+cd daiverp-project/frontend/src/components/
+nano AdminPanel.js
+cd
+nano server.py
+cd daiverp-project/frontend/src/components/
+nano AdminPanel.js
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+cd
+nano server.py
+rm server.py
+nano server.py
+cd daiverp-project/frontend/src/components/
+nano AdminPanel.js
+cd
+nano server.py
+rm server.py
+nano server.py
+cd daiverp-project/frontend/src/components/
+nano AdminPanel.js
+npm run build
+cd
+nano server.py
+cd daiverp-project/frontend/src/components/
+nano AdminPanel.js
+npm run build
+date
+timedatectl
+timedatectl list-timezones | grep Dublin
+sudo timedatectl set-timezone Europe/Dublin
+timedatectl list-timezones | grep Dublin
+timedatectl
+npm run build

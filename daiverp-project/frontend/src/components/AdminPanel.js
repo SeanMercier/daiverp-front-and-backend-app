@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Line, Bar } from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
 import { Chart as ChartJS } from "chart.js/auto";
 import "./AdminPanel.css";
 import { useNavigate } from "react-router-dom";
-
+ 
 function AdminPanel() {
   const [metrics, setMetrics] = useState({
     activeUsers: 0,
@@ -17,6 +17,7 @@ function AdminPanel() {
     datasets: [],
   });
 
+  const [range, setRange] = useState("all");
   const navigate = useNavigate();
 
   // Fetch live admin metrics from backend
@@ -32,35 +33,34 @@ function AdminPanel() {
       });
   }, []);
 
-// Fetch weekly prediction data from backend
-useEffect(() => {
-  fetch("/api/admin/weekly-predictions")
-    .then((res) => {
-      if (!res.ok) throw new Error("Failed to fetch weekly chart data");
-      return res.json();
-    })
-    .then((data) => {
-      setChartData({
-        labels: data.labels,
-        datasets: [
-          {
-            label: "V1 Predictions",
-            data: data.v1,
-            backgroundColor: "#0d6efd", // blue
-          },
-          {
-            label: "V2 Predictions",
-            data: data.v2,
-            backgroundColor: "#fd7e14", // orange
-          },
-        ],
+  // Fetch chart data with dynamic range filter
+  useEffect(() => {
+    fetch(`/api/admin/weekly-predictions?range=${range}`)
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to fetch chart data");
+        return res.json();
+      })
+      .then((data) => {
+        setChartData({
+          labels: data.labels,
+          datasets: [
+            {
+              label: "V1 Predictions",
+              data: data.v1,
+              backgroundColor: "#0d6efd",
+            },
+            {
+              label: "V2 Predictions",
+              data: data.v2,
+              backgroundColor: "#fd7e14",
+            },
+          ],
+        });
+      })
+      .catch((err) => {
+        console.error("Failed to fetch weekly predictions data:", err);
       });
-    })
-    .catch((err) => {
-      console.error("Failed to fetch weekly predictions data:", err);
-    });
-}, []);
-
+  }, [range]);
 
   return (
     <div className="admin-panel">
@@ -94,6 +94,27 @@ useEffect(() => {
         </div>
       </div>
 
+      <div style={{ marginTop: "2rem", textAlign: "center" }}>
+        <label htmlFor="range">📅 Filter Predictions:</label>{" "}
+        <select
+          id="range"
+          value={range}
+          onChange={(e) => setRange(e.target.value)}
+          style={{
+            padding: "0.5rem",
+            fontSize: "1rem",
+            borderRadius: "6px",
+            border: "1px solid #ccc",
+            marginLeft: "0.5rem",
+          }}
+        >
+          <option value="all">All Time</option>
+          <option value="monthly">Last 30 Days</option>
+          <option value="weekly">Last 7 Days</option>
+          <option value="daily">Last 24 Hours</option>
+        </select>
+      </div>
+
       <div style={{ marginTop: "3rem", maxWidth: "800px", marginInline: "auto" }}>
         <Bar
           data={chartData}
@@ -105,14 +126,12 @@ useEffect(() => {
               },
               title: {
                 display: true,
-                text: "Prediction Volume This Week",
+                text: "Prediction Volume by Model",
               },
             },
             scales: {
-              y: {
-                beginAtZero: true,
-                ticks: { stepSize: 10 },
-              },
+              x: { stacked: true },
+              y: { stacked: true, beginAtZero: true, ticks: { stepSize: 1 } },
             },
           }}
         />

@@ -69,12 +69,12 @@ def upload_file():
         print(f"🔍 Selected model from user: {selected_model}")
 
         # Simulate job queue
-        job_id = f"job_{datetime.utcnow().isoformat()}"
+        job_id = f"job_{datetime.now().isoformat()}"
         prediction_queue.append(job_id)
 
         # Track active user IP
         user_ip = request.remote_addr
-        active_users[user_ip] = datetime.utcnow()
+        active_users[user_ip] = datetime.now()
 
         # Run processing
         output_filepath, output_filename = process_system_log(filepath, selected_model)
@@ -89,7 +89,7 @@ def upload_file():
 
             # Track prediction metadata in memory
             history.appendleft({
-                "timestamp": datetime.utcnow().isoformat(),
+                "timestamp": datetime.now().isoformat(),
                 "filename": output_filename,
                 "model": selected_model
             })
@@ -128,7 +128,7 @@ def process_system_log(filepath, user_model_choice):
 
         # Create timestamped filename to avoid overwriting
         # Reference: https://stackoverflow.com/questions/10607688/how-to-create-a-file-name-with-the-current-date-time-in-python
-        timestamp = datetime.utcnow().strftime("%Y%m%d%H%M%S")
+        timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
         output_filename = f"predictions_{timestamp}.csv"
         prediction_output = os.path.join(PREDICTIONS_FOLDER, output_filename)
 
@@ -191,7 +191,7 @@ def get_history():
 # === Route: Admin metrics ===
 @app.route("/api/admin/metrics", methods=["GET"])
 def get_admin_metrics():
-    now = datetime.utcnow()
+    now = datetime.now()
     cutoff = now - timedelta(days=1)
 
     # Filter predictions in last 24h
@@ -213,39 +213,93 @@ def get_admin_metrics():
         "modelDeployed": model_deployed
     })
 
-# === Route: Weekly prediction chart data ===
+# === Route: Predictions chart data (with daily, weekly, monthly, all) ===
 @app.route("/api/admin/weekly-predictions", methods=["GET"])
 def get_weekly_predictions():
-    # Count predictions per weekday by model type (V1 vs V2)
+    """
+    Adjust the predictions based on ?range=all|monthly|weekly|daily
+    'all' => no cutoff, group by day of week
+    'weekly' => last 7 days, group by day of week
+    'daily' => last 24 hours, group by hour
+    'monthly' => last 30 days, group by day (e.g. 'Apr 09')
+    """
+    range_param = request.args.get("range", "weekly").lower().strip()
+    now_time = datetime.now()
+
+    # Decide time cutoff and labeling
+    if range_param == "daily":
+        # last 24 hours, label each hour
+        cutoff = now_time - timedelta(days=1)
+        label_order = []
+        for i in range(24):
+            hour_label = (now_time - timedelta(hours=(23 - i))).strftime("%H:00")
+            label_order.append(hour_label)
+
+        def get_label(dt):
+            return dt.strftime("%H:00")
+
+    elif range_param == "monthly":
+        # last 30 days, label by 'Apr 09'
+        cutoff = now_time - timedelta(days=30)
+        label_order = []
+        for i in reversed(range(30)):
+            label_str = (now_time - timedelta(days=i)).strftime("%b %d")
+            label_order.append(label_str)
+
+        def get_label(dt):
+            return dt.strftime("%b %d")
+
+    elif range_param == "all":
+        # no cutoff, group by day of week
+        cutoff = None
+        label_order = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+
+        def get_label(dt):
+            return dt.strftime("%a")
+
+    else:
+        # weekly by default
+        cutoff = now_time - timedelta(days=7)
+        label_order = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+
+        def get_label(dt):
+            return dt.strftime("%a")
+
     counter_v1 = Counter()
     counter_v2 = Counter()
 
     for record in history:
         if "timestamp" in record and "model" in record:
             dt = datetime.fromisoformat(record["timestamp"])
-            weekday = dt.weekday()
-            if record["model"] == "V2":
-                counter_v2[weekday] += 1
-            else:
-                counter_v1[weekday] += 1
+            if cutoff and dt < cutoff:
+                continue
 
-    days_ordered = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
-    data_v1 = [counter_v1.get(i, 0) for i in range(7)]
-    data_v2 = [counter_v2.get(i, 0) for i in range(7)]
+            label = get_label(dt)
+            if label not in label_order:
+                continue
+
+            if record["model"] == "V2":
+                counter_v2[label] += 1
+            else:
+                counter_v1[label] += 1
+
+    data_v1 = [counter_v1.get(lbl, 0) for lbl in label_order]
+    data_v2 = [counter_v2.get(lbl, 0) for lbl in label_order]
 
     return jsonify({
-        "labels": days_ordered,
+        "labels": label_order,
         "v1": data_v1,
         "v2": data_v2
     })
+
 
 
 # === Route: Track active users who are visiting (not just uploading) ===
 @app.route("/api/ping", methods=["GET"])
 def track_active_user():
     user_ip = request.remote_addr
-    active_users[user_ip] = datetime.utcnow()
-    return jsonify({"message": "pong", "timestamp": datetime.utcnow().isoformat()})
+    active_users[user_ip] = datetime.now()
+    return jsonify({"message": "pong", "timestamp": datetime.now().isoformat()})
 
 # === HTTPS Launch (with self-signed certs during development) ===
 # Reference: https://flask.palletsprojects.com/en/2.2.x/cli/#development-server

@@ -1,57 +1,3 @@
-cd
-python3 server.py
-curl -k -X POST -F "file=@/home/ec2-user/uploads/system_log.csv" https://localhost:8080/upload
-cd daiverp-project/
-cd frontend/
-cd src
-cd components/
-nano CSVUploader.js
-sudo nano /etc/nginx/nginx.conf
-sudo nginx -t   # Test config syntax
-sudo nano /etc/nginx/nginx.conf
-sudo nginx -t   # Test config syntax
-sudo systemctl reload nginx
-sudo lsof -i :8080
-python3 /path/to/server.py
-python3 server.py
-sudo nano /etc/nginx/nginx.conf
-sudo nginx -t   # Test config syntax
-sudo systemctl reload nginx
-nano server.py
-cd daiverp-project/
-cd frontend/
-cd src
-cd components/
-nano CSVUploader.js
-npm run build
-nano CSVUploader.js
-curl -vk https://localhost:8080/upload
-npm run build
-nano CSVUploader.js
-cd
-nano server.py
-cd daiverp-project/
-cd frontend/
-cd src
-cd components/
-nano Dashboard.js
-rm Dashboard.js
-nano Dashboard.js
-npm run build
-nano Dashboard.js
-npm run build
-cd daiverp-project/
-cd frontend/
-cd src
-cd components/
-nano Dashboard.js
-npm run build
-flask run --cert=cert.pem --key=key.pem --host=0.0.0.0 --port=8080
-cd
-flask run --cert=cert.pem --key=key.pem --host=0.0.0.0 --port=8080
-nano server.py
-cd daiverp-pr
-cd daiverp-project/
 cd frontend/
 cd src/
 cd components/
@@ -997,4 +943,58 @@ timedatectl list-timezones | grep Dublin
 sudo timedatectl set-timezone Europe/Dublin
 timedatectl list-timezones | grep Dublin
 timedatectl
+npm run build
+git add -A
+git commit -m "feat: Store and display predictions in Ireland local time and implement time filters (all, daily, weekly, monthly)
+git commit -m "Store and display predictions in Ireland local time and implement time filters (all, daily, weekly, monthly)"
+git commit -m "feat: Store and display predictions in Ireland local time and implement time filters (all, daily, weekly, monthly)
+git commit -m "Store and display predictions in Ireland local time and implement time filters: all, daily, weekly, monthly"
+
+git commit -m "feat: Store and display predictions in Ireland local time and implement time filters: all, daily, weekly, monthly"
+
+git commit -m "Store and display predictions in Ireland local time and implement time filters: a
+git commit -m "Store and display predictions in Ireland local time and implement time filters: 
+git commit -m "Stored and display predictions on admin panel with time filtering, all time, monthly, weekly and daily"
+git push origin main
+nano server.py
+cd daiverp-project/frontend/src/components/
+nano AdminPanel.js
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+cd
+nano server.py
+cd daiverp-project/frontend/src/components/
+nano AdminPanel.js
+npm run build
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+nano AdminPanel.css
+npm run build
+rm AdminPanel.css
+nano AdminPanel.css
+npm run build
+rm AdminPanel.css
+nano AdminPanel.css
+nano AdminPanel.js
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+rm AdminPanel.css
+nano AdminPanel.css
+npm run build
+rm AdminPanel.css
+nano AdminPanel.css
+npm run build
+rm AdminPanel.css
+nano AdminPanel.css
+npm run build
+rm AdminPanel.js
+nano AdminPanel.js
+nano AdminPanel.css
+npm run build
+rm  AdminPanel.js
+nano AdminPanel.js
+nano AdminPanel.css
 npm run build

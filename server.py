@@ -301,6 +301,54 @@ def track_active_user():
     active_users[user_ip] = datetime.now()
     return jsonify({"message": "pong", "timestamp": datetime.now().isoformat()})
 
+# === Route: Model usage pie chart ===
+@app.route("/api/admin/model-usage", methods=["GET"])
+def get_model_usage():
+    """
+    Returns how many times V1 vs V2 have been used across all predictions in history.
+    """
+    v1_count = 0
+    v2_count = 0
+    for record in history:
+        if "model" in record:
+            if record["model"] == "V2":
+                v2_count += 1
+            else:
+                v1_count += 1
+    return jsonify({"v1Count": v1_count, "v2Count": v2_count})
+
+# === Route: Daily totals bar chart (last 14 days) ===
+@app.route("/api/admin/daily-totals", methods=["GET"])
+def get_daily_totals():
+    """
+    Returns how many predictions happened on each of the last 14 days.
+    The response includes 'labels' (day strings) and 'data' (counts).
+    """
+    now = datetime.utcnow()
+    cutoff = now - timedelta(days=14)
+    daily_counter = Counter()
+
+    for record in history:
+        if "timestamp" in record:
+            dt = datetime.fromisoformat(record["timestamp"])
+            if dt >= cutoff:
+                day_label = dt.strftime("%b %d")  # e.g. 'Apr 12'
+                daily_counter[day_label] += 1
+
+    # Build labels for the last 14 days in chronological order
+    labels = []
+    for i in range(14):
+        label_str = (now - timedelta(days=(13 - i))).strftime("%b %d")
+        labels.append(label_str)
+
+    data = [daily_counter.get(day, 0) for day in labels]
+
+    return jsonify({
+        "labels": labels,
+        "data": data
+    })
+
+
 # === HTTPS Launch (with self-signed certs during development) ===
 # Reference: https://flask.palletsprojects.com/en/2.2.x/cli/#development-server
 if __name__ == "__main__":

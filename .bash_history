@@ -1,152 +1,3 @@
-cd frontend/
-cd src/
-cd components/
-nano Dashboard.js
-npm run build
-sudo nano /etc/nginx/nginx.conf
-sudo rm /etc/nginx/nginx.conf
-sudo nano /etc/nginx/nginx.conf
-sudo nginx -t && sudo systemctl restart nginx
-npm run build
-nano CSVUploader.js
-cd
-nano server.py
-cd daiverp-project/
-cd frontend/
-cd srv
-cd src
-cd components/
-nano Dashboard.js
-nano CSVUploader.js
-nano Dashboard.js
-npm run build
-nano CSVUploader.js
-nano Dashboard.js
-nano CSVUploader.js
-npm run build
-nano CSVUploader.js
-nano Dashboard.js
-npm run build
-ls
-nano server.py
-clear
-rm server.py
-nano server.py
-cd daiverp-project/
-cd frontend/
-cd src
-cd components/
-nano Dashboard.js
-npm run build
-nano Dashboard.js
-rm Dashboard.js
-nano Dashboard.js
-npm run build
-rm Dashboard.js
-nano Dashboard.js
-npm run build
-rm Dashboard.js
-nano Dashboard.js
-npm run build
-cd
-ls
-cd model 
-nano predict.py 
-rm predict.py 
-nano predict.py
-cd daiverp-project/
-cd frontend/
-cd src
-cd components/
-npm run build
-cd
-cd model
-nano cve_log
-rm cve_log
-ls
-nano cve_log.csv
-cd model 
-nano predict.py 
-rm predict.py 
-nano predict.py 
-cd mo
-cd model
-nano predict.py 
-rm predict.py 
-nano predict.py 
-cd model
-nano cve_log.csv
-clear
-ls
-exit
-ls
-cd model
-ls
-rm cve_log.csv
-cd
-move /home/ec2-user/cve_log.csv /home/ec2-user/model/cve_log.csv
-mv /home/ec2-user/cve_log.csv /home/ec2-user/model/cve_log.csv
-ls
-cd model
-ls
-cd
-chmod +x cve_log.csv
-cd model
-chmod +x cve_log.csv
-ls
-cd daiverp-project/
-cd frontend/
-cd src
-cd components/
-nano CSVUploader.js
-sudo journalctl -u nginx -n 50 --no-pager
-cd
-cat server.log | tail -n 30
-cd model
-nano cve_log_sample.csv 
-rm cve_log.csv 
-ls
-exit
-ls
-mv /home/ec2-user/cve_log.csv /home/ec2-user/model/cve_log.csv
-ls
-cd model
-ls
-chmod +x cve_log.csv
-ls
-cd molde
-cd model
-nano predict.py 
-rm predict.py 
-nano predict.py
-cd model
-rm predict.py 
-nano predict.py
-rm predict.py 
-nano predict.py
-cd
-cd model 
-nano cve_log.csv
-rm cve_log.csv 
-exit
-cd model
-ls
-cd model
-ls
-exit
-ls
-mv /home/ec2-user/cve_log.csv /home/ec2-user/model/cve_log.csv
-ls
-cd model
-ls
-chmod +x cve_log.csv
-ls
-nano predict.py 
-python3 predict.py system_architecture_sample.csv cve_log.csv 
-rm cve_log.csv
-exit
-ls
-mv /home/ec2-user/cve_log.csv /home/ec2-user/model/cve_log.csv
 cd model
 ls
 chmod +x cve_log.csv
@@ -997,4 +848,153 @@ npm run build
 rm  AdminPanel.js
 nano AdminPanel.js
 nano AdminPanel.css
+npm run build
+cd daiverp-project/frontend/src/components/
+nano AdminPanel.css
+rm AdminPanel.js
+nano AdminPanel.js
+rm AdminPanel.css
+nano AdminPanel.css
+npm run buildd
+npm run build
+rm AdminPanel.js
+nano AdminPanel.js
+npm run buil
+npm run build
+nano AdminPanel.js
+npm run build
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+nano AdminPanel.js
+npm run build
+nano AdminPanel.js
+npm run build
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+cd
+git add -A
+git commit -m "add two new side‑by‑side charts (Model Usage pie + Daily Totals bar) beneath the main chart"
+git push origin main
+rm AdminPanel.js
+cd daiverp-project/frontend/src/components/
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+nano AdminPanel.js
+npm run build
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+cd
+git add -A
+git commit -m "added persistent demo seed to create simulated data for more interesting charts that nearly all update properly with merge with real live data. To be continued"
+git push origin main
+cd daiverp-project/frontend/src/components/
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+nano AdminPanel.js
+npm run build
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+cd daiverp-project/frontend/src/components/
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+nano AdminPanel.js
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+rm AdminPanel.js
+nano AdminPanel.js
 npm run build

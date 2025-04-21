@@ -1,101 +1,3 @@
-cd model
-ls
-chmod +x cve_log.csv
-ls
-nano predict.py 
-rm predict.py 
-nano predict.py 
-nano cve_log.csv 
-python3 predict.py system_architecture_sample.csv cve_log.csv 
-rm cve_log.csv 
-exit
-mv /home/ec2-user/cve_log.csv /home/ec2-user/model/cve_log.csv
-chmod +x cve_log.csv
-cd model
-chmod +x cve_log.csv
-python3 predict.py system_architecture_sample.csv cve_log.csv 
-rm predict.py 
-nano predict.py
-rm predict.py 
-nano predict.py
-python3 predict.py system_architecture_sample.csv cve_log.csv 
-nano system_architecture_sample.csv 
-nano cve_log.csv
-rm cve_log.csv
-exit
-mv /home/ec2-user/cve_log.csv /home/ec2-user/model/cve_log.csv
-cd model
-chmod +x cve_log.csv
-python3 predict.py system_architecture_sample.csv cve_log.csv 
-cd model
-ls
-python3 predict.py system_architecture_log.csv cve_log.csv
-nano predict.py 
-python3 predict.py system_architecture_log.csv cve_log.csv
-nano cve_log.csv
-rm cve_log.csv
-exit
-mv /home/ec2-user/cve_log.csv /home/ec2-user/model/cve_log.csv
-cd model/
-chmod +x cve_log.csv
-python3 predict.py system_architecture_log.csv cve_log.csv
-nano system_architecture_log.csv 
-nano cve_log.csv
-nano predict.py 
-python3 predict.py system_architecture_log.csv cve_log.csv
-rm predict.py 
-nano predict.py
-python3 predict.py system_architecture_log.csv cve_log.csv
-rm predict.py 
-nano predict.py
-python3 predict.py system_architecture_log.csv cve_log.csv
-rm predict.py 
-nano predict.py
-python3 predict.py system_architecture_log.csv cve_log.csv
-nano cve_log.csv 
-rm cve_log.csv 
-exit
-mv /home/ec2-user/cve_log.csv /home/ec2-user/model/cve_log.csv
-cd model
-chmod +x cve_log.csv
-python3 predict.py system_architecture_log.csv cve_log.csv
-lear
-clear
-cd model
-nano cve_log.csv
-cd model 
-nano cve_log.csv
-exit
-cd model
-chmod 400 daiverp_rf_model_V2.pkl 
-ls
-mv daiverp_rf_model.pkl daiverp_rf_model_V1.pkl
-ls
-nano predict.py 
-nano predict.pypy
-ls
-nano predict.py 
-rm predict.py 
-nano predict.py 
-chmod 400 daiverp_rf_model_V2.pkl 
-ls
-python predict.py system_architecture_log.csv cve_log.csv daiverp_rf_model_v2.pkl
-python3 predict.py system_architecture_log.csv cve_log.csv daiverp_rf_model_v2.pkl
-chmod +x daiverp_rf_model_V2.pkl
-python3 predict.py system_architecture_log.csv cve_log.csv daiverp_rf_model_V2.pkl
-ython3 predict.py system_architecture_log.csv cve_log.csv daiverp_rf_model_V1.pkl
-python3 predict.py system_architecture_log.csv cve_log.csv daiverp_rf_model_V1.pkl
-python3 predict.py system_architecture_log.csv cve_log.csv daiverp_rf_model_V2.pkl
-exit
-ls
-cd model
-ls
-cd
-cd daiverp-project/
-cd frontend/
-cd src
-cd components/
-ls
 nano Dashbaord.js
 nano Dashboard.js
 ls
@@ -992,6 +894,104 @@ npm run build
 rm AdminPanel.js
 nano AdminPanel.js
 npm run build
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+cd daiverp-project/frontend/src/components/
+nano AdminPanel.js
+npm run build
+nano AdminPanel.js
+npm run build
+nano AdminPanel.js
+npm run build
+cd
+git add -A
+git commit -m "All charts displaying properly on admin panel with demo data. Need to get the live data to merge properly now."
+git push origin main
+cd daiverp-project/frontend/src/components/
+npm run build
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+cd
+nano server.py
+cd daiverp-project/frontend/src/components/
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+rm AdminPanel.js
+npm run build
+nano AdminPanel.js
+npm run build
+cd daiverp-project/frontend/src/components/
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+nano AdminPanel.js
+npm run build
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+cd daiverp-project/frontend/src/components/
+rm AdminPanel.js
+npm run build
+nano AdminPanel.js
+npm run build
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+nano AdminPanel.js
+rm AdminPanel.js
+nano AdminPanel.js
+y
+npm run build
+nano AdminPanel.js
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+rm AdminPanel.js
+nano AdminPanel.js
+npm run build
+date
 rm AdminPanel.js
 nano AdminPanel.js
 npm run build

@@ -292,6 +292,39 @@ def get_weekly_predictions():
         "v2": data_v2
     })
 
+@app.route("/api/admin/hourly-predictions", methods=["GET"])
+def get_hourly_predictions():
+    """
+    Returns how many predictions happened each hour in the last 24 hours.
+    Grouped by hour in format 'HH:00'
+    """
+    now = datetime.now()
+    cutoff = now - timedelta(hours=24)
+    counter_v1 = Counter()
+    counter_v2 = Counter()
+
+    for record in history:
+        if "timestamp" in record and "model" in record:
+            dt = datetime.fromisoformat(record["timestamp"])
+            if dt < cutoff:
+                continue
+
+            label = dt.strftime("%H:00")
+            if record["model"] == "V2":
+                counter_v2[label] += 1
+            else:
+                counter_v1[label] += 1
+
+    # Create labels for the past 24 hours (in correct order)
+    labels = [(now - timedelta(hours=i)).strftime("%H:00") for i in reversed(range(24))]
+    data_v1 = [counter_v1.get(lab, 0) for lab in labels]
+    data_v2 = [counter_v2.get(lab, 0) for lab in labels]
+
+    return jsonify({
+        "labels": labels,
+        "v1": data_v1,
+        "v2": data_v2
+    })
 
 
 # === Route: Track active users who are visiting (not just uploading) ===

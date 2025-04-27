@@ -63,7 +63,6 @@ function CSVUploader({ onUploadSuccess }) {
   // Upload file via FormData + Fetch API
   // Ref: https://developer.mozilla.org/en-US/docs/Web/API/FormData
   const uploadFile = async (file) => {
-    setUploadStatus("Uploading...");
     const formData = new FormData();
     formData.append("file", file);
     formData.append("model", selectedModel); // Add selected model info
@@ -79,7 +78,6 @@ function CSVUploader({ onUploadSuccess }) {
       }
 
       const data = await response.json();
-      setUploadStatus("Upload successful! Processing data...");
       setDownloadUrl(data.download_url);
       onUploadSuccess(data); // Pass response to parent (Dashboard.js)
     } catch (error) {
@@ -114,14 +112,8 @@ function CSVUploader({ onUploadSuccess }) {
 
       {/* File metadata and UI status */}
       {selectedFile && <p className="file-info">File Selected: {selectedFile.name}</p>}
-      {uploadStatus && <p className="upload-status">{uploadStatus}</p>}
+{uploadStatus && <p className="upload-status">{uploadStatus}</p>}
 
-      {/* Download link for predictions */}
-      {downloadUrl && (
-        <a href={downloadUrl} download="predictions.csv" className="download-btn">
-          Download Predictions
-        </a>
-      )}
     </div>
   );
 }

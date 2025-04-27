@@ -47,7 +47,7 @@ function Dashboard() {
     if (response.download_url) {
       const httpsBackend = `https://${window.location.hostname}:8080`;
       setDownloadUrl(`${httpsBackend}${response.download_url}`);
-      setUploadStatus("✅ File processed successfully! Download predictions above.");
+      setUploadStatus("✅ File processed successfully! Download predictions below.");
       setPredictions(response.predictions || []);
     } else {
       setUploadStatus("❌ Upload failed. Please check the file and try again.");
@@ -314,7 +314,6 @@ function Dashboard() {
       </div>
 
       <div className="sidebar">
-        <button className="sidebar-button">📊 Exploitability Likelihood</button>
         <button className="sidebar-button" onClick={handleShowChart}>📈 CVE Count by Severity</button>
         <button className="sidebar-button" onClick={handleShowHistory}>🕑 History</button>
       </div>

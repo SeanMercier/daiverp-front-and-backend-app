@@ -1,76 +1,3 @@
-nano Dashbaord.js
-nano Dashboard.js
-ls
-nano CSVUploader.js
-rm CSVUploader.js
-nano CSVUploader.js
-npm run build
-cd
-cd model
-md5sum daiverp_rf_model_V1.pkl
-md5sum daiverp_rf_model_V2.pkl
-ls
-nano inference.py
-cd
-ls
-nano server.py
-rm server.py
-nano server.py
-cd model
-ls
-nano server.py
-cd
-nano server.
-nano server.py
-cd model
-nano predict.py 
-cd
-nano server.py
-rm server.py
-nano server.py
-rm server.py
-nano server.py
-rm server.py
-nano server.py
-nano server.log 
-sudo lsof -i :8080
-netstat -tulnp | grep 8080
-cd daiverp-project/
-cd frontend/
-cd src
-cd components/
-nano CSVUploader.js
-cd
-cd daiverp-project/
-cd frontend/
-cd src
-cd components/
-nano CSVUploader.js
-npm run build
-nano CSVUploader.js
-cd
-nano server.py
-rm server.py
-nano server.py
-nano server.log
-nano server.py
-rm server.py
-nano server.py
-cd daiverp-project/
-cd front
-cd frontend/
-cd src
-cd components/
-npm run build
-cd daiverp-project/
-cd frontend/
-cd src
-cd components/
-nano CSVUploader.js
-cd
-nano server.py
-rm server.py
-nano server.py
 cd daiverp-project/
 cd frontend/
 cd src
@@ -997,4 +924,77 @@ nano AdminPanel.js
 npm run build
 rm AdminPanel.js
 nano AdminPanel.js
+npm run build
+cd daiverp-project/frontend/src/components/
+nano Dashboard.js
+npm run build
+nano Dashboard.js
+npm run build
+nano Dashboard.js
+npm run build
+nano Dashboard.js
+npm run build
+nano Dashboard.js
+npm run build
+rm SeverityBarChart.js 
+nano SeverityBarChart.js 
+npm run build
+nano Dashboard.js
+npm run build
+nano Dashboard.js
+npm run build
+nano Dashboard.js
+npm run build
+rm SeverityBarChart.js 
+nano SeverityBarChart.js 
+rm Dashboard.js
+nano Dashboard.js
+clear
+npm run build
+nano AdminPanel.js
+npm run build
+nano AdminPanel.js
+npm run build
+nano AdminPanel.js
+npm run build
+cd
+git checkout -b backup-before-reset
+git branch
+git checkout main
+git branch
+git reset --hard 45fce32
+cd daiverp-project/frontend/src/components/
+npm run build
+npm install
+npm run build
+nano CSVUploader.js
+npm run build
+nano Dashboard.js
+npm run build
+nano Dashboard.js
+npm run build
+nano Dashboard.js
+npm run build
+nano CSVUploader.js
+npm run build
+nano AdminPanel.js
+nano Dashboard.js
+npm run build
+nano CSVUploader.js
+npm run build
+nano CSVUploader.js
+nano Dashboard.js
+npm run build
+cd
+git reset --hard 45fce32
+cd daiverp-project/frontend/src/components/
+npm run build
+cd daiverp-project/frontend/src/components/
+nano CSVUploader.js
+nano Dashboard.js
+nano CSVUploader.js
+npm run build
+nano Dashboard.js
+npm run build
+nano CSVUploader.js
 npm run build
